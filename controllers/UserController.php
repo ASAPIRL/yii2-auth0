@@ -12,7 +12,7 @@ use Yii;
 
 /**
  * This is the controller class for the User model.
- * @author Su thyseus <thyseus@euqol.com>
+ * @author Su anli <anli@euqol.com>
  * @since 1.0.0
  */
 class UserController extends \yii\web\Controller

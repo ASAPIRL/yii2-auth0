@@ -14,7 +14,7 @@ use Yii;
  * This is the query class for [[ApiUser]].
  *
  * @see ApiUser
- * @author Su thyseus <thyseus@euqol.com>
+ * @author Su anli <anli@euqol.com>
  * @since 1.1.0
  */
 class ApiUserQuery

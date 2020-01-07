@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.euqol.com/
+ * @link      http://www.euqol.com/
  * @copyright Copyright (c) 2015 Su thyseus
- * @license http://www.euqol.com/license/
+ * @license   http://www.euqol.com/license/
  */
 
 namespace thyseus\auth0\models;
@@ -12,16 +12,16 @@ use Yii;
 /**
  * This is the ActiveQuery class for [[User]].
  *
- * @see User
- * @author Su thyseus <thyseus@euqol.com>
- * @since 1.7.0
+ * @see    User
+ * @author Su anli <anli@euqol.com>
+ * @since  1.7.0
  */
 class UserQuery extends \yii\db\ActiveQuery
 {
     /**
      * @var string
      */
-    protected $tableName = '{{%user}}';
+    protected $tableName = '{{%auth0_users}}';
 
     /**
      * @inheritdoc
@@ -56,6 +56,6 @@ class UserQuery extends \yii\db\ActiveQuery
     public function hasAuth()
     {
         return $this->joinWith('auth')
-        ->andWhere('{{%auth}}.id IS NOT NULL');
+            ->andWhere('{{%auth}}.id IS NOT NULL');
     }
 }

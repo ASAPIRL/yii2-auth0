@@ -17,7 +17,7 @@ use Yii;
  * @property string $source
  * @property string $source_id
  *
- * @author Su thyseus <thyseus@euqol.com>
+ * @author Su anli <anli@euqol.com>
  * @since 1.0.0
  */
 class Auth extends \yii\db\ActiveRecord

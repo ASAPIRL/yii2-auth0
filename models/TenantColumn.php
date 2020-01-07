@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.euqol.com/
+ * @link      http://www.euqol.com/
  * @copyright Copyright (c) 2015 Su thyseus
- * @license http://www.euqol.com/license/
+ * @license   http://www.euqol.com/license/
  */
 
 namespace thyseus\auth0\models;
@@ -15,9 +15,9 @@ use yii\helpers\Url;
 /**
  * This is the column class for [[Tenant]].
  *
- * @see Tenant
- * @author Su thyseus <thyseus@euqol.com>
- * @since 1.2.0
+ * @see    Tenant
+ * @author Su anli <anli@euqol.com>
+ * @since  1.2.0
  */
 class TenantColumn
 {
@@ -56,7 +56,7 @@ class TenantColumn
                 'value' => function ($model, $key, $index, $column) {
                     $count = $model->getTenantUsers()->count();
 
-                    return ($count > 0) ? Yii::$app->formatter->asDecimal($count, 0) : '' ;
+                    return ($count > 0) ? Yii::$app->formatter->asDecimal($count, 0) : '';
                 },
             ],
         ]);
@@ -71,16 +71,16 @@ class TenantColumn
     {
         $this->columns = array_merge($this->columns, [
             [
-                'class' => ActionColumn::className(),
-                'controller' => SELF::CONTROLLER,
-                'template' => $template,
-                'buttons' => [
+                'class'          => ActionColumn::className(),
+                'controller'     => SELF::CONTROLLER,
+                'template'       => $template,
+                'buttons'        => [
                     'update' => function ($url, $model, $key) {
                         return Html::a('<i class="fa fa-pencil"></i>', false, ['value' => Url::to([SELF::CONTROLLER . '/update', 'id' => $model->id]), 'title' => 'Update Tenant', 'class' => 'showModalButton']);
                     },
                 ],
                 'contentOptions' => ['class' => 'text-right'],
-            ]
+            ],
         ]);
         return $this;
     }
@@ -93,10 +93,10 @@ class TenantColumn
         $this->columns = array_merge($this->columns, [
             [
                 'attribute' => 'name',
-                'value' => function ($model, $key, $index, $column) {
+                'value'     => function ($model, $key, $index, $column) {
                     return Html::a(Html::encode($model->name), [SELF::CONTROLLER . '/view', 'id' => $model->id]);
                 },
-                'format' => 'raw',
+                'format'    => 'raw',
             ],
         ]);
         return $this;

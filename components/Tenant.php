@@ -14,7 +14,7 @@ use yii\base\InvalidConfigException;
 
 /**
  * This is the component class for the Tenant.
- * @author Su thyseus <thyseus@euqol.com>
+ * @author Su anli <anli@euqol.com>
  * @since 1.1.0
  */
 class Tenant extends Component

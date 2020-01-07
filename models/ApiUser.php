@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.euqol.com/
+ * @link      http://www.euqol.com/
  * @copyright Copyright (c) 2015 Su thyseus
- * @license http://www.euqol.com/license/
+ * @license   http://www.euqol.com/license/
  */
 
 namespace thyseus\auth0\models;
@@ -13,8 +13,8 @@ use Yii;
 /**
  * This is the model class for Auth0 Api Users".
  *
- * @author Su thyseus <thyseus@euqol.com>
- * @since 1.1.0
+ * @author Su anli <anli@euqol.com>
+ * @since  1.1.0
  */
 class ApiUser extends \yii\base\Model
 {
@@ -28,7 +28,7 @@ class ApiUser extends \yii\base\Model
      */
     public function init()
     {
-       parent::init();
+        parent::init();
     }
 
 
@@ -59,6 +59,7 @@ class ApiUser extends \yii\base\Model
 
     /**
      * @param string $userId
+     *
      * @return mixed
      */
     public function findOne($userId)

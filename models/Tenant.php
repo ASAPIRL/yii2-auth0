@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.euqol.com/
+ * @link      http://www.euqol.com/
  * @copyright Copyright (c) 2015 Su thyseus
- * @license http://www.euqol.com/license/
+ * @license   http://www.euqol.com/license/
  */
 
 namespace thyseus\auth0\models;
@@ -15,17 +15,17 @@ use yii\db\Expression;
 /**
  * This is the model class for table "{{%tenant}}".
  *
- * @property integer $id
- * @property string $name
- * @property string $created_at
- * @property integer $create_user_id
- * @property string $updated_at
- * @property integer $update_user_id
+ * @property integer      $id
+ * @property string       $name
+ * @property string       $created_at
+ * @property integer      $create_user_id
+ * @property string       $updated_at
+ * @property integer      $update_user_id
  *
  * @property TenantUser[] $tenantUsers
  *
- * @author Su thyseus <thyseus@euqol.com>
- * @since 1.0.0
+ * @author Su anli <anli@euqol.com>
+ * @since  1.0.0
  */
 class Tenant extends \yii\db\ActiveRecord
 {
@@ -34,7 +34,7 @@ class Tenant extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%tenant}}';
+        return '{{%auth0_tenants}}';
     }
 
     /**
@@ -46,7 +46,7 @@ class Tenant extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['create_user_id', 'update_user_id'], 'integer'],
-            [['name'], 'string', 'max' => 255]
+            [['name'], 'string', 'max' => 255],
         ];
     }
 
@@ -56,11 +56,11 @@ class Tenant extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Name',
-            'created_at' => 'Created At',
+            'id'             => 'ID',
+            'name'           => 'Name',
+            'created_at'     => 'Created At',
             'create_user_id' => 'Create User ID',
-            'updated_at' => 'Updated At',
+            'updated_at'     => 'Updated At',
             'update_user_id' => 'Update User ID',
         ];
     }
@@ -91,9 +91,9 @@ class Tenant extends \yii\db\ActiveRecord
     public static function findByAuth0()
     {
         $query = self::find()
-        ->andWhere(['name' => Yii::$app->getModule('auth0')->auth0->getDefaultTenant()]);
+            ->andWhere(['name' => Yii::$app->getModule('auth0')->auth0->getDefaultTenant()]);
 
-        if (!$query->exists()) {
+        if (! $query->exists()) {
             $model = new Tenant;
             $model->name = Yii::$app->getModule('auth0')->auth0->getDefaultTenant();
             $model->save();
@@ -120,13 +120,13 @@ class Tenant extends \yii\db\ActiveRecord
     {
         return [
             'timestamp' => [
-                'class' => TimestampBehavior::className(),
+                'class'              => TimestampBehavior::className(),
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => 'updated_at',
-                'value' => new Expression('NOW()'),
+                'value'              => new Expression('NOW()'),
             ],
             'blameable' => [
-                'class' => BlameableBehavior::className(),
+                'class'              => BlameableBehavior::className(),
                 'createdByAttribute' => 'create_user_id',
                 'updatedByAttribute' => 'update_user_id',
             ],

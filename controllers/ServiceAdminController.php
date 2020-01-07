@@ -14,7 +14,7 @@ use yii\filters\AccessControl;
 
 /**
  * This is the ServiceAdmin controller class for Auth0.
- * @author Su thyseus <thyseus@euqol.com>
+ * @author Su anli <anli@euqol.com>
  * @since 1.1.0
  */
 class ServiceAdminController extends \yii\web\Controller

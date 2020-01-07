@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.euqol.com/
+ * @link      http://www.euqol.com/
  * @copyright Copyright (c) 2015 Su thyseus
- * @license http://www.euqol.com/license/
+ * @license   http://www.euqol.com/license/
  */
 
 namespace thyseus\auth0\models;
@@ -15,16 +15,16 @@ use Yii;
  * @property integer $id
  * @property integer $tenant_id
  * @property integer $user_id
- * @property string $created_at
+ * @property string  $created_at
  * @property integer $create_user_id
- * @property string $updated_at
+ * @property string  $updated_at
  * @property integer $update_user_id
  *
- * @property Tenant $tenant
- * @property User $user
+ * @property Tenant  $tenant
+ * @property User    $user
  *
- * @author Su thyseus <thyseus@euqol.com>
- * @since 1.1.0
+ * @author Su anli <anli@euqol.com>
+ * @since  1.1.0
  */
 class TenantUser extends \yii\db\ActiveRecord
 {
@@ -44,7 +44,7 @@ class TenantUser extends \yii\db\ActiveRecord
         return [
             [['tenant_id', 'user_id'], 'required'],
             [['tenant_id', 'user_id', 'create_user_id', 'update_user_id'], 'integer'],
-            [['created_at', 'updated_at'], 'safe']
+            [['created_at', 'updated_at'], 'safe'],
         ];
     }
 
@@ -54,12 +54,12 @@ class TenantUser extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'tenant_id' => 'Tenant ID',
-            'user_id' => 'User ID',
-            'created_at' => 'Created At',
+            'id'             => 'ID',
+            'tenant_id'      => 'Tenant ID',
+            'user_id'        => 'User ID',
+            'created_at'     => 'Created At',
             'create_user_id' => 'Create User ID',
-            'updated_at' => 'Updated At',
+            'updated_at'     => 'Updated At',
             'update_user_id' => 'Update User ID',
         ];
     }
@@ -98,10 +98,10 @@ class TenantUser extends \yii\db\ActiveRecord
     public static function findByTenantUser($tenant, $user)
     {
         $query = self::find()
-        ->andWhere(['tenant_id' => $tenant->id])
-        ->andWhere(['user_id' => $user->id]);
+            ->andWhere(['tenant_id' => $tenant->id])
+            ->andWhere(['user_id' => $user->id]);
 
-        if (!$query->exists()) {
+        if (! $query->exists()) {
             $model = new TenantUser;
             $model->user_id = $user->id;
             $model->tenant_id = $tenant->id;

@@ -11,7 +11,7 @@ use Yii;
 
 /**
  * This is the model class for [[\Auth0\SDK\Auth0]].
- * @author Su thyseus <thyseus@euqol.com>
+ * @author Su anli <anli@euqol.com>
  * @since 1.0.0
  */
 class Auth0 extends \Auth0\SDK\Auth0

@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.euqol.com/
+ * @link      http://www.euqol.com/
  * @copyright Copyright (c) 2015 Su thyseus
- * @license http://www.euqol.com/license/
+ * @license   http://www.euqol.com/license/
  */
 
 namespace thyseus\auth0\models;
@@ -13,8 +13,9 @@ use yii\helpers\ArrayHelper;
 
 /**
  * This is the class for Login Form.
- * @author Su thyseus <thyseus@euqol.com>
- * @since 1.6.0
+ *
+ * @author Su anli <anli@euqol.com>
+ * @since  1.6.0
  */
 class TenantLoginForm extends Model
 {
@@ -62,7 +63,7 @@ class TenantLoginForm extends Model
             ->asArray()
             ->all();
 
-        return ArrayHelper::map($array,'id', 'name');
+        return ArrayHelper::map($array, 'id', 'name');
     }
 
     /**

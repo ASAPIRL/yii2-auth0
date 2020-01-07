@@ -18,7 +18,7 @@ use yii\filters\AccessControl;
 
 /**
  * This is the controller class for the API User model.
- * @author Su thyseus <thyseus@euqol.com>
+ * @author Su anli <anli@euqol.com>
  * @since 1.1.0
  */
 class ApiUserController extends \yii\web\Controller

@@ -49,17 +49,17 @@ class TenantSearch extends Tenant
 
         $this->load($params);
 
-        if (!$this->validate()) {
+        if (! $this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
             return $dataProvider;
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'created_at' => $this->created_at,
+            'id'             => $this->id,
+            'created_at'     => $this->created_at,
             'create_user_id' => $this->create_user_id,
-            'updated_at' => $this->updated_at,
+            'updated_at'     => $this->updated_at,
             'update_user_id' => $this->update_user_id,
         ]);
 

@@ -13,7 +13,7 @@ use Yii;
 
 /**
  * This is the tenant behavior class.
- * @author Su thyseus <thyseus@euqol.com>
+ * @author Su anli <anli@euqol.com>
  * @since 1.2.0
  */
 class TenantBehavior extends Behavior

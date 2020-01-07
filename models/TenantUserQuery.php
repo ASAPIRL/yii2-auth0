@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.euqol.com/
+ * @link      http://www.euqol.com/
  * @copyright Copyright (c) 2015 Su thyseus
- * @license http://www.euqol.com/license/
+ * @license   http://www.euqol.com/license/
  */
 
 namespace thyseus\auth0\models;
@@ -10,9 +10,9 @@ namespace thyseus\auth0\models;
 /**
  * This is the ActiveQuery class for [[TenantUser]].
  *
- * @see TenantUser
- * @author Su thyseus <thyseus@euqol.com>
- * @since 1.1.0
+ * @see    TenantUser
+ * @author Su anli <anli@euqol.com>
+ * @since  1.1.0
  */
 class TenantUserQuery extends \yii\db\ActiveQuery
 {

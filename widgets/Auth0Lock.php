@@ -17,7 +17,7 @@ use yii\helpers\Html;
  * ```php
  * echo \thyseus\auth0\widgets\Auth0Lock::widget([]);
  * ```
- * @author Su thyseus <thyseus@euqol.com>
+ * @author Su anli <anli@euqol.com>
  * @since 1.0.0
  */
 class Auth0Lock extends Widget

@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.euqol.com/
+ * @link      http://www.euqol.com/
  * @copyright Copyright (c) 2015 Su thyseus
- * @license http://www.euqol.com/license/
+ * @license   http://www.euqol.com/license/
  */
 
 namespace thyseus\auth0\models;
@@ -12,9 +12,9 @@ use Yii;
 /**
  * This is the ActiveQuery class for [[Tenant]].
  *
- * @see Tenant
- * @author Su thyseus <thyseus@euqol.com>
- * @since 1.0.0
+ * @see    Tenant
+ * @author Su anli <anli@euqol.com>
+ * @since  1.0.0
  */
 class TenantQuery extends \yii\db\ActiveQuery
 {
@@ -38,6 +38,7 @@ class TenantQuery extends \yii\db\ActiveQuery
 
     /**
      * @param integer
+     *
      * @return mixed
      */
     public function byUser($id = '')

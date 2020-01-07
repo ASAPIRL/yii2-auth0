@@ -13,7 +13,7 @@ use yii\helpers\Json;
 
 /**
  * This is the main module class.
- * @author Su thyseus <thyseus@euqol.com>
+ * @author Su anli <anli@euqol.com>
  * @since 1.0.0
  */
 class Module extends \yii\base\Module

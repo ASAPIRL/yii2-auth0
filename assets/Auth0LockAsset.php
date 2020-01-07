@@ -11,7 +11,7 @@ use yii\web\AssetBundle;
 
 /**
  * This is the asset class for the Auth0Lock.
- * @author Su thyseus <thyseus@euqol.com>
+ * @author Su anli <anli@euqol.com>
  * @since 1.0.0
  */
 class Auth0LockAsset extends AssetBundle

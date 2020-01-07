@@ -12,7 +12,7 @@ use yii\base\Model;
 
 /**
  * This is the class for Login Form.
- * @author Su thyseus <thyseus@euqol.com>
+ * @author Su anli <anli@euqol.com>
  * @since 1.0.0
  */
 class LoginForm extends Model
