@@ -1,7 +1,7 @@
 <?php
 /**
  * @link      http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su thyseus
+ * @copyright Copyright (c) 2015 Su anli
  * @license   http://www.euqol.com/license/
  */
 
@@ -49,6 +49,6 @@ class TenantQuery extends \yii\db\ActiveQuery
         }
 
         return $this->joinWith('tenantUsers')
-            ->andWhere(['user_id' => Yii::$app->user->id]);
+            ->andWhere(['user_id' => Yii::$app->auth0user->id]);
     }
 }

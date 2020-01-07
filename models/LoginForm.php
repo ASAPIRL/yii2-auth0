@@ -1,19 +1,21 @@
 <?php
 /**
- * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su thyseus
- * @license http://www.euqol.com/license/
+ * @link      http://www.euqol.com/
+ * @copyright Copyright (c) 2015 Su anli
+ * @license   http://www.euqol.com/license/
  */
 
 namespace thyseus\auth0\models;
 
 use Yii;
 use yii\base\Model;
+use app\models\User;
 
 /**
  * This is the class for Login Form.
+ *
  * @author Su anli <anli@euqol.com>
- * @since 1.0.0
+ * @since  1.0.0
  */
 class LoginForm extends Model
 {
@@ -37,12 +39,16 @@ class LoginForm extends Model
 
     /**
      * Logs in a user using the provided username and password.
+     *
      * @return boolean whether the user is logged in successfully
      */
     public function login()
     {
-        Yii::$app->user->login($this->getUser());
-        Yii::$app->tenant->login($this->getTenant());
+        $user = $this->getUser();
+
+        if ($user) {
+            Yii::$app->user->login($this->getUser());
+        }
 
         return true;
     }
@@ -58,7 +64,7 @@ class LoginForm extends Model
         $auth0Data = Yii::$app->getModule('auth0')->auth0->getUser();
 
         if ($this->_user === false) {
-            $this->_user = User::findByAuth0($auth0Data);
+            $this->_user = Auth0User::createFromAuth0($auth0Data);
         }
 
         return $this->_user;

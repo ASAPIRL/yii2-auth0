@@ -100,12 +100,12 @@ class TenantController extends Controller
      */
     public function actionView($id)
     {
-        Yii::$app->user->setReturnUrl(['/' . $this->getRoute(), 'id' => $id]);
+        Yii::$app->auth0user->setReturnUrl(['/' . $this->getRoute(), 'id' => $id]);
 
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }    
+    }
 
     /**
      * Deletes an existing Tenant model.

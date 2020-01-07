@@ -1,7 +1,7 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su thyseus
+ * @copyright Copyright (c) 2015 Su anli
  * @license http://www.euqol.com/license/
  */
 
@@ -49,7 +49,7 @@ class ServiceAdminController extends \yii\web\Controller
      */
     public function actionIndex()
     {
-        Yii::$app->user->setReturnUrl(['/' . $this->getRoute()]);
+        Yii::$app->auth0user->setReturnUrl(['/' . $this->getRoute()]);
 
         $userQuery = ApiUser::find()->orderBy('email:1');
         $tenantQuery = Tenant::find()->orderBy('name');

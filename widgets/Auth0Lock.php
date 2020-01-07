@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su thyseus
- * @license http://www.euqol.com/license/
+ * @link      http://www.euqol.com/
+ * @copyright Copyright (c) 2015 Su anli
+ * @license   http://www.euqol.com/license/
  */
 
 namespace thyseus\auth0\widgets;
@@ -17,15 +17,16 @@ use yii\helpers\Html;
  * ```php
  * echo \thyseus\auth0\widgets\Auth0Lock::widget([]);
  * ```
+ *
  * @author Su anli <anli@euqol.com>
- * @since 1.0.0
+ * @since  1.0.0
  */
 class Auth0Lock extends Widget
 {
     /**
      * @var string
      */
-    public $clientId = '';
+    public $client_id = '';
 
     /**
      * @var string
@@ -35,30 +36,36 @@ class Auth0Lock extends Widget
     /**
      * @var boolean
      */
-    public $redirectUrl = '';
+    public $redirect_uri = '';
 
     /**
      * Initializes the widget.
      */
     public function init()
     {
-       parent::init();
+        parent::init();
 
-       $this->clientId = Yii::$app->getModule('auth0')->clientId;
-       $this->domain = Yii::$app->getModule('auth0')->domain;
-       $this->redirectUrl = Yii::$app->getModule('auth0')->redirectUrl;
+        $module = Yii::$app->getModule('auth0');
 
-       Auth0LockAsset::register($this->getView());
-       $this->getView()->registerJs($this->js);
+        $this->client_id = $module->client_id;
+        $this->domain = $module->domain;
+        $this->redirect_uri = $module->redirect_uri;
+
+        Auth0LockAsset::register($this->getView());
+        $this->getView()->registerJs($this->js);
     }
 
     /**
      * Renders the widget.
+     *
      * @return string
      */
     public function run()
     {
-        echo Html::tag('div', '', ['id' => 'root', 'style' => "width: 280px; margin: 40px auto; padding: 10px; border-width: 1px;"]);
+        echo Html::tag('div', '', [
+            'id'    => 'root',
+            'style' => 'width: 280px; margin: 40px auto; padding: 10px; border-width: 1px;',
+        ]);
     }
 
     /**
@@ -69,19 +76,20 @@ class Auth0Lock extends Widget
         $rememberLastLogin = Yii::$app->getModule('auth0')->rememberLastLogin;
 
         return <<< JS
-            var lock = new Auth0Lock('{$this->clientId}', '{$this->domain}');
-
-            lock.show({
+            var options = {
                 focusInput: true,
                 rememberLastLogin: {$rememberLastLogin},
-                sso: true,
-                container: 'root',
-                callbackURL: '{$this->redirectUrl}',
+                redirectUrl: '{$this->redirect_uri}',
+                redirect: false, // @see https://github.com/auth0/lock#popup-mode
                 responseType: 'code',
                 authParams: {
-                  scope: 'openid profile'
+                  scope: 'email openid profile'
                   }
-            });
+            };
+
+            var lock = new Auth0Lock('{$this->client_id}', '{$this->domain}', options);
+
+            lock.show();
 JS;
     }
 }

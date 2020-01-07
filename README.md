@@ -22,20 +22,17 @@ or add
 
 to the require section of your `composer.json` file.
 
-Run migration with:
-
-    php yii migrate/up --migrationPath=@vendor/thyseus/yii2-auth0/migrations
-    
-or add the path to the config/console.php 'migrations' path.
-
 Configuration
 -----
+
+Ensure to have `Yii::$app->user` and `app\models\User.php` with an `source` (varchar) column
+configured properly for this extension to work.
 
 Update the `modules` section with:
 
     'auth0' => array_merge([
         'class' => 'thyseus\auth0\Module',
-        'adminEmails' => ['thyseus@simbiosis.com.sg'],
+        'adminEmails' => ['admin@example.com'],
     ], require(__DIR__ . '/auth0-local.php')),
 
 Create a new file in `config/auth0-local.php`:
@@ -43,27 +40,27 @@ Create a new file in `config/auth0-local.php`:
     <?php
     if (YII_ENV_DEV) {
         return [
-            'serviceId' => '',
-            'domain' => '',
-            'clientId' => '',
-            'clientSecret' => '',
-            'redirectUrl' => '',
-            'apiTokens' => [
-                'usersRead' => '',
-                'usersUpdate' => '',
+            'service_id' => '',
+            'domain' => '', // just domain, without protocol (without https://)
+            'client_id' => '',
+            'client_secret' => '',
+            'redirect_uri' => '',
+            'api_tokens' => [
+                'users_read' => '',
+                'users_update' => '',
             ]
         ];
     }
 
     return [
         'serviceId' => '',
-        'domain' => '',
-        'clientId' => '',
-        'clientSecret' => '',
-        'redirectUrl' => '',
-        'apiTokens' => [
-            'usersRead' => '',
-            'usersUpdate' => '',
+        'domain' => '', // just domain, without protocol (without https://)
+        'client_id' => '',
+        'client_secret' => '',
+        'redirect_uri' => '',
+        'api_tokens' => [
+            'users_read' => '',
+            'users_update' => '',
         ]
     ];
 
@@ -75,10 +72,6 @@ Login to auth0 and update the `Allowed Callback Urls` in your setting page.
 
 Update the `components` section in the config with:
 
-    'user' => [
-        'identityClass' => 'thyseus\auth0\models\User',
-        'loginUrl' => ['auth0/user/login'],
-    ],
     'tenant' => [
         'class' => 'thyseus\auth0\components\Tenant',
     ],

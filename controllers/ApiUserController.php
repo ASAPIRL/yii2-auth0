@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su thyseus
- * @license http://www.euqol.com/license/
+ * @link      http://www.euqol.com/
+ * @copyright Copyright (c) 2015 Su anli
+ * @license   http://www.euqol.com/license/
  */
 
 namespace thyseus\auth0\controllers;
@@ -18,8 +18,9 @@ use yii\filters\AccessControl;
 
 /**
  * This is the controller class for the API User model.
+ *
  * @author Su anli <anli@euqol.com>
- * @since 1.1.0
+ * @since  1.1.0
  */
 class ApiUserController extends \yii\web\Controller
 {
@@ -33,14 +34,16 @@ class ApiUserController extends \yii\web\Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => [
-                            'update-role', 'remove-tenant', 'update',
+                        'actions'       => [
+                            'update-role',
+                            'remove-tenant',
+                            'update',
                         ],
-                        'allow' => true,
-                        'roles' => ['@'],
+                        'allow'         => true,
+                        'roles'         => ['@'],
                         'matchCallback' => function ($rule, $action) {
                             return Yii::$app->controller->module->isAdmin;
-                        }
+                        },
                     ],
                 ],
             ],
@@ -51,11 +54,12 @@ class ApiUserController extends \yii\web\Controller
      * @param string $userId
      * @param string $role
      * @param string $tenantId
+     *
      * @return mixed
      */
     public function actionUpdateRole($userId, $role = 'user', $tenantId = null)
     {
-        if (!isset($tenantId)) {
+        if (! isset($tenantId)) {
             $tenant = Yii::$app->tenant->identity;
         } else {
             $tenant = Tenant::findOne($tenantId);
@@ -66,9 +70,9 @@ class ApiUserController extends \yii\web\Controller
 
         $data = [
             'app_metadata' => ['permissions' => [
-                    Yii::$app->getModule('auth0')->serviceId => [
-                        $tenant->name => ['role' => $role],
-                    ],
+                Yii::$app->getModule('auth0')->serviceId => [
+                    $tenant->name => ['role' => $role],
+                ],
             ],],
         ];
 
@@ -100,11 +104,12 @@ class ApiUserController extends \yii\web\Controller
 
     /**
      * @param string $userId
+     *
      * @return mixed
      */
     public function actionRemoveTenant($userId, $tenantId = null)
     {
-        if (!isset($tenantId)) {
+        if (! isset($tenantId)) {
             $tenant = Yii::$app->tenant->identity;
         } else {
             $tenant = Tenant::findOne($tenantId);
@@ -132,6 +137,7 @@ class ApiUserController extends \yii\web\Controller
     /**
      * @param string $userId
      * @param string $data
+     *
      * @return mixed
      */
     protected function update($userId, $data)

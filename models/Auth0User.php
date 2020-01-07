@@ -2,13 +2,14 @@
 
 namespace thyseus\auth0\models;
 
-use thyseus\helper\models\Gravatar;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use yii\helpers\ArrayHelper;
+
+use app\models\User;
 
 /**
  * User model
@@ -19,51 +20,18 @@ use yii\helpers\ArrayHelper;
  * @property string  $password_reset_token
  * @property string  $email
  * @property string  $auth_key
- * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
  * @property string  $password write-only password
  */
-class User extends ActiveRecord implements IdentityInterface
+class Auth0User extends User implements IdentityInterface
 {
-    const STATUS_DELETED = 0;
-    const STATUS_ACTIVE = 10;
-
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return '{{%auth0_users}}';
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::className(),
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
-        ];
-    }
-
     /**
      * @inheritdoc
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['id' => $id]);
     }
 
     /**
@@ -83,7 +51,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['username' => $username]);
     }
 
     /**
@@ -101,7 +69,6 @@ class User extends ActiveRecord implements IdentityInterface
 
         return static::findOne([
             'password_reset_token' => $token,
-            'status'               => self::STATUS_ACTIVE,
         ]);
     }
 
@@ -200,16 +167,13 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByAuth0($auth0Data)
     {
-        $query = self::find()
-            ->joinWith('auth')
-            ->andWhere(['source_id' => $auth0Data['user_id']])
-            ->andWhere(['source' => 'auth0']);
+        $query = self::find()->where(['source' => 'auth0']);
 
         if (! $query->exists()) {
             return self::createFromAuth0($auth0Data);
         }
 
-        return $query->one();
+        return $query->one() ?? null;
     }
 
     /**
@@ -223,55 +187,33 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @return $mixed Return false on error
      */
-    public static function createFromAuth0($auth0Data)
+    public static function createFromAuth0(array $auth0Data)
     {
-        // check is email taken
+        // check if email is taken
 
-        $query = User::find()
-            ->andWhere(['email' => $auth0Data['email']]);
+        $model = User::find()
+            ->where([
+                'email'  => $auth0Data['email'],
+                'source' => 'auth0',
+            ])->one();
 
-        if ($query->exists()) {
-            $model = $query->one();
-
-            $auth = new Auth([
-                'user_id'   => $model->id,
-                'source'    => 'auth0',
-                'source_id' => (string)$auth0Data['user_id'],
-            ]);
-            if ($auth->save()) {
-                return $model;
-            }
-
-            print_r($auth->getErrors());
-            return false;
-
-        } else {
-            $model = new self([
-                'username' => $auth0Data['nickname'],
-                'email'    => $auth0Data['email'],
-                'password' => Yii::$app->security->generateRandomString(6),
-            ]);
-            $model->generateAuthKey();
-            $model->generatePasswordResetToken();
-            $transaction = $model->getDb()->beginTransaction();
-            if ($model->save()) {
-                $auth = new Auth([
-                    'user_id'   => $model->id,
-                    'source'    => 'auth0',
-                    'source_id' => (string)$auth0Data['user_id'],
-                ]);
-                if ($auth->save()) {
-                    $transaction->commit();
-                    return $model;
-                }
-
-                print_r($auth->getErrors());
-                return false;
-            }
-
-            print_r($user->getErrors());
-            return false;
+        if ($model) {
+            return $model;
         }
+
+        $model = new User([
+            'username'   => $auth0Data['nickname'],
+            'email'      => $auth0Data['email'],
+            'password'   => Yii::$app->security->generateRandomString(6),
+            'source'     => 'auth0',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        $model->save(false,
+            ['username', 'email', 'password', 'source', 'created_at', 'updated_at']);
+
+        return $model;
     }
 
     /**
@@ -318,19 +260,5 @@ class User extends ActiveRecord implements IdentityInterface
     public static function find()
     {
         return new UserQuery(get_called_class());
-    }
-
-    /**
-     * @return string
-     */
-    public function getImageUrl()
-    {
-        $model = new Gravatar;
-        $model->email = $this->email;
-
-        $letter = substr($this->username, 0, 2);
-        $model->default = "https://cdn.auth0.com/avatars/jo.png";
-
-        return $model->imageUrl;
     }
 }

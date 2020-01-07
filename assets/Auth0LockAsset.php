@@ -1,7 +1,7 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su thyseus
+ * @copyright Copyright (c) 2015 Su anli
  * @license http://www.euqol.com/license/
  */
 
@@ -20,6 +20,6 @@ class Auth0LockAsset extends AssetBundle
      * @inheritdoc
      */
     public $js = [
-        'https://cdn.auth0.com/js/lock-9.2.3.min.js',
+        'https://cdn.auth0.com/js/lock/11.20.2/lock.min.js',
     ];
 }

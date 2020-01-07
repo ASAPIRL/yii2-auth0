@@ -18,25 +18,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="tenant-login-form">
 
-    <?php $form = ActiveForm::begin(['id' => $model->formName(),
-        'enableAjaxValidation' => false,
-        'enableClientValidation' => true,
-        'class' => 'modalSubmit',
+    <?php $form = ActiveForm::begin(['id'                     => $model->formName(),
+                                     'enableAjaxValidation'   => false,
+                                     'enableClientValidation' => true,
+                                     'class'                  => 'modalSubmit',
     ]); ?>
 
-    <?php Portlet::begin(['id' => $model->formName() . '-form-portlet', 'title' => $this->title,
-        'buttons' => [
-            Html::submitButton('<i class="fa fa-check"></i> Contin<u>u</u>e', ['class' => 'btn green-haze btn-circle', 'value' => "form#{$model->formName()}", 'accesskey' => 'u', 'data-pjax' => 0]),
-        ],
+    <?php Portlet::begin(['id'      => $model->formName() . '-form-portlet', 'title' => $this->title,
+                          'buttons' => [
+                              Html::submitButton('<i class="fa fa-check"></i> Contin<u>u</u>e', ['class' => 'btn green-haze btn-circle', 'value' => "form#{$model->formName()}", 'accesskey' => 'u', 'data-pjax' => 0]),
+                          ],
     ]); ?>
 
     <?= $form->field($model, 'tenant_id')->widget(Select2::classname(), [
-        'data' => $model->tenantSelect2Data,
-        'options' => ['placeholder' => 'Select a tenant ...'],
+        'data'          => $model->tenantSelect2Data,
+        'options'       => ['placeholder' => 'Select a tenant ...'],
         'pluginOptions' => [
             'allowClear' => true,
         ],
-    ]);?>
+    ]); ?>
 
     <?php Portlet::end(); ?>
 

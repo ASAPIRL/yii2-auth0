@@ -1,7 +1,7 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su thyseus
+ * @copyright Copyright (c) 2015 Su anli
  * @license http://www.euqol.com/license/
  */
 

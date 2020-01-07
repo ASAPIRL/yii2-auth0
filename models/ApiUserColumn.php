@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su thyseus
- * @license http://www.euqol.com/license/
+ * @link      http://www.euqol.com/
+ * @copyright Copyright (c) 2015 Su anli
+ * @license   http://www.euqol.com/license/
  */
 
 namespace thyseus\auth0\models;
@@ -14,9 +14,9 @@ use yii\helpers\Html;
 /**
  * This is the column class for [[ApiUser]].
  *
- * @see ApiUser
+ * @see    ApiUser
  * @author Su anli <anli@euqol.com>
- * @since 1.1.0
+ * @since  1.1.0
  */
 class ApiUserColumn
 {
@@ -55,6 +55,7 @@ class ApiUserColumn
 
     /**
      * @param string $tenantName
+     *
      * @return mixed
      */
     public function role($tenantName)
@@ -68,8 +69,8 @@ class ApiUserColumn
                         return $model['app_metadata']['permissions'][Yii::$app->getModule('auth0')->serviceId][$tenantName]['role'];
                     }
                     return '';
-                }
-            ]
+                },
+            ],
         ]);
         return $this;
     }
@@ -85,38 +86,39 @@ class ApiUserColumn
 
     /**
      * @param string $template
-     * @param mixed $params
+     * @param mixed  $params
+     *
      * @return mixed
      */
     public function actions($template = '{update} {delete}', $params = '')
     {
         $this->columns = array_merge($this->columns, [
             [
-                'class' => ActionColumn::className(),
-                'controller' => SELF::CONTROLLER,
-                'template' => $template,
-                'buttons' => [
-                    'update-role-to-user' => function ($url, $model, $key) use ($params) {
+                'class'          => ActionColumn::className(),
+                'controller'     => SELF::CONTROLLER,
+                'template'       => $template,
+                'buttons'        => [
+                    'update-role-to-user'  => function ($url, $model, $key) use ($params) {
                         return Html::a('<i class="fa fa-check"></i>', [SELF::CONTROLLER . '/update-role', 'userId' => $model['user_id'], 'tenantId' => $params, 'role' => 'user'], [
-                            'title' => 'Update to User',
+                            'title'       => 'Update to User',
                             'data-toggle' => 'tooltip',
                         ]);
                     },
                     'update-role-to-admin' => function ($url, $model, $key) use ($params) {
                         return Html::a('<i class="fa fa-check-circle"></i>', [SELF::CONTROLLER . '/update-role', 'userId' => $model['user_id'], 'tenantId' => $params, 'role' => 'admin'], [
-                            'title' => 'Update to Admin',
+                            'title'       => 'Update to Admin',
                             'data-toggle' => 'tooltip',
                         ]);
                     },
-                    'remove-tenant' => function ($url, $model, $key) {
+                    'remove-tenant'        => function ($url, $model, $key) {
                         return Html::a('<i class="fa fa-times"></i>', [SELF::CONTROLLER . '/remove-tenant', 'userId' => $model['user_id']], [
-                            'title' => 'Remove',
+                            'title'       => 'Remove',
                             'data-toggle' => 'tooltip',
                         ]);
                     },
                 ],
                 'contentOptions' => ['class' => 'text-right'],
-            ]
+            ],
         ]);
         return $this;
     }
@@ -128,15 +130,15 @@ class ApiUserColumn
     {
         $this->columns = array_merge($this->columns, [
             [
-                'label' => 'Tenants',
-                'value' => function ($model, $key, $index, $column) {
+                'label'          => 'Tenants',
+                'value'          => function ($model, $key, $index, $column) {
 
-                    $count = TenantUser::find()->joinWith(['user.auth'])->andWhere(['{{%auth}}.source_id' => $model['user_id']])->count();
+                    $count = TenantUser::find()->joinWith(['user.auth'])->count();
 
-                    return ($count > 0) ? Yii::$app->formatter->asDecimal($count, 0) : '' ;
+                    return ($count > 0) ? Yii::$app->formatter->asDecimal($count, 0) : '';
                 },
                 'contentOptions' => ['class' => 'text-center'],
-                'headerOptions' => ['class' => 'text-center'],
+                'headerOptions'  => ['class' => 'text-center'],
             ],
         ]);
         return $this;
