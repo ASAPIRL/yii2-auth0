@@ -1,11 +1,11 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su Anli
+ * @copyright Copyright (c) 2015 Su thyseus
  * @license http://www.euqol.com/license/
  */
 
-namespace anli\auth0\models;
+namespace thyseus\auth0\models;
 
 use Yii;
 
@@ -13,7 +13,7 @@ use Yii;
  * This is the ActiveQuery class for [[User]].
  *
  * @see User
- * @author Su Anli <anli@euqol.com>
+ * @author Su thyseus <thyseus@euqol.com>
  * @since 1.7.0
  */
 class UserQuery extends \yii\db\ActiveQuery

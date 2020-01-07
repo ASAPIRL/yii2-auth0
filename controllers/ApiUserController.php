@@ -1,16 +1,16 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su Anli
+ * @copyright Copyright (c) 2015 Su thyseus
  * @license http://www.euqol.com/license/
  */
 
-namespace anli\auth0\controllers;
+namespace thyseus\auth0\controllers;
 
-use anli\auth0\models\Tenant;
-use anli\auth0\models\User;
-use anli\auth0\models\TenantUser;
-use anli\auth0\models\ApiUser;
+use thyseus\auth0\models\Tenant;
+use thyseus\auth0\models\User;
+use thyseus\auth0\models\TenantUser;
+use thyseus\auth0\models\ApiUser;
 use Auth0\SDK\API\ApiUsers;
 use Yii;
 use yii\web\HttpException;
@@ -18,7 +18,7 @@ use yii\filters\AccessControl;
 
 /**
  * This is the controller class for the API User model.
- * @author Su Anli <anli@euqol.com>
+ * @author Su thyseus <thyseus@euqol.com>
  * @since 1.1.0
  */
 class ApiUserController extends \yii\web\Controller

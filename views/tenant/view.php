@@ -1,15 +1,15 @@
 <?php
 
-use anli\auth0\models\ApiUser;
-use anli\metronic\widgets\Portlet;
-use anli\metronic\widgets\GridView;
+use thyseus\auth0\models\ApiUser;
+use thyseus\metronic\widgets\Portlet;
+use thyseus\metronic\widgets\GridView;
 use yii\data\ArrayDataProvider;
 use yii\widgets\Pjax;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use kartik\alert\AlertBlock;
 /* @var $this yii\web\View */
-/* @var $model anli\auth0\models\Tenant */
+/* @var $model thyseus\auth0\models\Tenant */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Tenants', 'url' => ['index']];

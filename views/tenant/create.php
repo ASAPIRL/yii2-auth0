@@ -4,7 +4,7 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model anli\auth0\models\Tenant */
+/* @var $model thyseus\auth0\models\Tenant */
 
 $this->title = 'Create Tenant';
 $this->params['breadcrumbs'][] = ['label' => 'Tenants', 'url' => ['index']];

@@ -1,7 +1,7 @@
 <?php
-namespace anli\auth0\models;
+namespace thyseus\auth0\models;
 
-use anli\helper\models\Gravatar;
+use thyseus\helper\models\Gravatar;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;

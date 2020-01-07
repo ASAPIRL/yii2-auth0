@@ -1,10 +1,10 @@
 <?php
 
-use anli\metronic\widgets\Portlet;
-use anli\metronic\widgets\GridView;
-use anli\metronic\widgets\ButtonGroup;
-use anli\auth0\models\ApiUser;
-use anli\auth0\models\Tenant;
+use thyseus\metronic\widgets\Portlet;
+use thyseus\metronic\widgets\GridView;
+use thyseus\metronic\widgets\ButtonGroup;
+use thyseus\auth0\models\ApiUser;
+use thyseus\auth0\models\Tenant;
 use yii\helpers\Html;
 use yii\data\ArrayDataProvider;
 use yii\data\ActiveDataProvider;

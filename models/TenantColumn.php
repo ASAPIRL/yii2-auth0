@@ -1,11 +1,11 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su Anli
+ * @copyright Copyright (c) 2015 Su thyseus
  * @license http://www.euqol.com/license/
  */
 
-namespace anli\auth0\models;
+namespace thyseus\auth0\models;
 
 use Yii;
 use yii\grid\ActionColumn;
@@ -16,7 +16,7 @@ use yii\helpers\Url;
  * This is the column class for [[Tenant]].
  *
  * @see Tenant
- * @author Su Anli <anli@euqol.com>
+ * @author Su thyseus <thyseus@euqol.com>
  * @since 1.2.0
  */
 class TenantColumn

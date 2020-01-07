@@ -1,13 +1,13 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su Anli
+ * @copyright Copyright (c) 2015 Su thyseus
  * @license http://www.euqol.com/license/
  */
 
-namespace anli\auth0\widgets;
+namespace thyseus\auth0\widgets;
 
-use anli\auth0\assets\Auth0LockAsset;
+use thyseus\auth0\assets\Auth0LockAsset;
 use Yii;
 use yii\bootstrap\Widget;
 use yii\helpers\Html;
@@ -15,9 +15,9 @@ use yii\helpers\Html;
 /**
  * This is the widget class for the Auth0Lock.
  * ```php
- * echo \anli\auth0\widgets\Auth0Lock::widget([]);
+ * echo \thyseus\auth0\widgets\Auth0Lock::widget([]);
  * ```
- * @author Su Anli <anli@euqol.com>
+ * @author Su thyseus <thyseus@euqol.com>
  * @since 1.0.0
  */
 class Auth0Lock extends Widget

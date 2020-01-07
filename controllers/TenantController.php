@@ -1,10 +1,10 @@
 <?php
 
-namespace anli\auth0\controllers;
+namespace thyseus\auth0\controllers;
 
-use anli\auth0\models\Tenant;
-use anli\auth0\models\TenantLoginForm;
-use anli\auth0\models\TenantSearch;
+use thyseus\auth0\models\Tenant;
+use thyseus\auth0\models\TenantLoginForm;
+use thyseus\auth0\models\TenantSearch;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -22,7 +22,7 @@ class TenantController extends Controller
     /**
      * @var string
      */
-    const MODEL_FULL_NAME = 'anli\auth0\models\Tenant';
+    const MODEL_FULL_NAME = 'thyseus\auth0\models\Tenant';
 
     public function behaviors()
     {
@@ -64,30 +64,30 @@ class TenantController extends Controller
     {
         return [
             'delete-all' => [
-               'class' => 'anli\helper\actions\DeleteAll',
+               'class' => 'thyseus\helper\actions\DeleteAll',
                'modelFullName' => self::MODEL_FULL_NAME,
                'noTenant' => true,
             ],
             'import' => [
-                'class' => 'anli\helper\actions\ImportAction',
-                'importModelName' => '\anli\auth0\models\Tenant',
+                'class' => 'thyseus\helper\actions\ImportAction',
+                'importModelName' => '\thyseus\auth0\models\Tenant',
                 'attributes' => [
                     'name' => 'name',
                 ],
             ],
             'export' => [
-				'class' => 'anli\helper\actions\ExportAction',
+				'class' => 'thyseus\helper\actions\ExportAction',
 				'query' => Tenant::find(),
 				'attributes' => [
 					'name' => 'name',
 				],
 			],
             'update' => [
-                'class' => 'anli\helper\actions\UpdateAction',
+                'class' => 'thyseus\helper\actions\UpdateAction',
                 'model' => Tenant::findOne(Yii::$app->getRequest()->getQueryParam('id')),
             ],
             'create' => [
-                'class' => 'anli\helper\actions\CreateAction',
+                'class' => 'thyseus\helper\actions\CreateAction',
                 'model' => new Tenant,
             ],
         ];

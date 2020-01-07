@@ -1,6 +1,12 @@
-anli\auth0
-==========
+thyseus\auth0
+=============
 Yii2 Auth0
+
+Credits
+-------
+
+This is a fork of the abondoned anli/yii2-auth0 project. It uses a very old version of
+auth0, so i decided to make a hard fork and modernize it.
 
 Installation
 ------------
@@ -9,17 +15,19 @@ The preferred way to install this extension is through [composer](http://getcomp
 
 Either run
 
-    php composer.phar require --prefer-dist anli/yii2-auth0 "*"
+    php composer.phar require --prefer-dist thyseus/yii2-auth0 "*"
 
 or add
 
-    "anli/yii2-auth0": "*"
+    "thyseus/yii2-auth0": "*"
 
 to the require section of your `composer.json` file.
 
 Run migration with:
 
-    php yii migrate/up --migrationPath=@vendor/anli/yii2-auth0/migrations
+    php yii migrate/up --migrationPath=@vendor/thyseus/yii2-auth0/migrations
+    
+or add the path to the config/console.php 'migrations' path.
 
 Configuration
 -----
@@ -27,8 +35,8 @@ Configuration
 Update the `modules` section with:
 
     'auth0' => array_merge([
-        'class' => 'anli\auth0\Module',
-        'adminEmails' => ['anli@simbiosis.com.sg'],
+        'class' => 'thyseus\auth0\Module',
+        'adminEmails' => ['thyseus@simbiosis.com.sg'],
     ], require(__DIR__ . '/auth0-local.php')),
 
 Create a new file in `config/auth0-local.php`:
@@ -69,11 +77,11 @@ Login to auth0 and update the `Allowed Callback Urls` in your setting page.
 Update the `components` section in the config with:
 
     'user' => [
-        'identityClass' => 'anli\auth0\models\User',
+        'identityClass' => 'thyseus\auth0\models\User',
         'loginUrl' => ['auth0/user/login'],
     ],
     'tenant' => [
-        'class' => 'anli\auth0\components\Tenant',
+        'class' => 'thyseus\auth0\components\Tenant',
     ],
 
 Usage
@@ -93,7 +101,7 @@ To show the login tenant, use:
 
 To auto update the tenant_id, add to the `behaviors` section of your model with:
 
-    use anli\auth0\behaviors\TenantBehavior;
+    use thyseus\auth0\behaviors\TenantBehavior;
     ...
     'tenant' => [
         'class' => TenantBehavior::className(),

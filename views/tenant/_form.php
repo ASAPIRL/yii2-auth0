@@ -2,10 +2,10 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use anli\metronic\widgets\Portlet;
+use thyseus\metronic\widgets\Portlet;
 
 /* @var $this yii\web\View */
-/* @var $model anli\auth0\models\Tenant */
+/* @var $model thyseus\auth0\models\Tenant */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 <div class="tenant-form">

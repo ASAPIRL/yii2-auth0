@@ -1,14 +1,14 @@
 <?php
 
-namespace anli\auth0\models;
+namespace thyseus\auth0\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use anli\auth0\models\Tenant;
+use thyseus\auth0\models\Tenant;
 
 /**
- * TenantSearch represents the model behind the search form about `anli\auth0\models\Tenant`.
+ * TenantSearch represents the model behind the search form about `thyseus\auth0\models\Tenant`.
  */
 class TenantSearch extends Tenant
 {

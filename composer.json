@@ -6,8 +6,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Su Anli",
-            "email": "anli@euqol.com"
+            "name": "Su thyseus",
+            "email": "thyseus@euqol.com"
         },
         {
             "name": "Herbert Maschke",
@@ -22,7 +22,7 @@
     },
     "autoload": {
         "psr-4": {
-            "anli\\auth0\\": ""
+            "thyseus\\auth0\\": ""
         }
     }
 }

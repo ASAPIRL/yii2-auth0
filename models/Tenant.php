@@ -1,11 +1,11 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su Anli
+ * @copyright Copyright (c) 2015 Su thyseus
  * @license http://www.euqol.com/license/
  */
 
-namespace anli\auth0\models;
+namespace thyseus\auth0\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
@@ -24,7 +24,7 @@ use yii\db\Expression;
  *
  * @property TenantUser[] $tenantUsers
  *
- * @author Su Anli <anli@euqol.com>
+ * @author Su thyseus <thyseus@euqol.com>
  * @since 1.0.0
  */
 class Tenant extends \yii\db\ActiveRecord

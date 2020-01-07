@@ -1,20 +1,20 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su Anli
+ * @copyright Copyright (c) 2015 Su thyseus
  * @license http://www.euqol.com/license/
  */
 
-namespace anli\auth0\controllers;
+namespace thyseus\auth0\controllers;
 
-use anli\auth0\models\ApiUser;
-use anli\auth0\models\Tenant;
+use thyseus\auth0\models\ApiUser;
+use thyseus\auth0\models\Tenant;
 use Yii;
 use yii\filters\AccessControl;
 
 /**
  * This is the ServiceAdmin controller class for Auth0.
- * @author Su Anli <anli@euqol.com>
+ * @author Su thyseus <thyseus@euqol.com>
  * @since 1.1.0
  */
 class ServiceAdminController extends \yii\web\Controller

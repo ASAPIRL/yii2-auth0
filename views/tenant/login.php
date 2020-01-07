@@ -1,6 +1,6 @@
 <?php
 
-use anli\metronic\widgets\Portlet;
+use thyseus\metronic\widgets\Portlet;
 use kartik\widgets\Select2;
 use kartik\widgets\ActiveForm;
 use yii\helpers\Html;

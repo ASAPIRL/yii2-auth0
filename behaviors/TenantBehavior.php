@@ -1,11 +1,11 @@
 <?php
 /**
 * @link http://www.euqol.com/
-* @copyright Copyright (c) 2015 Su Anli
+* @copyright Copyright (c) 2015 Su thyseus
 * @license http://www.euqol.com/license/
 */
 
-namespace anli\auth0\behaviors;
+namespace thyseus\auth0\behaviors;
 
 use yii\base\Behavior;
 use yii\db\ActiveRecord;
@@ -13,7 +13,7 @@ use Yii;
 
 /**
  * This is the tenant behavior class.
- * @author Su Anli <anli@euqol.com>
+ * @author Su thyseus <thyseus@euqol.com>
  * @since 1.2.0
  */
 class TenantBehavior extends Behavior

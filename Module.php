@@ -1,19 +1,19 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su Anli
+ * @copyright Copyright (c) 2015 Su thyseus
  * @license http://www.euqol.com/license/
  */
 
-namespace anli\auth0;
+namespace thyseus\auth0;
 
-use anli\auth0\models\Auth0;
+use thyseus\auth0\models\Auth0;
 use Yii;
 use yii\helpers\Json;
 
 /**
  * This is the main module class.
- * @author Su Anli <anli@euqol.com>
+ * @author Su thyseus <thyseus@euqol.com>
  * @since 1.0.0
  */
 class Module extends \yii\base\Module
@@ -26,12 +26,12 @@ class Module extends \yii\base\Module
     /**
      * @inheritdoc
      */
-    public $layout = '@vendor/anli/yii2-metronic/views/layouts/main';
+    public $layout = '@vendor/thyseus/yii2-metronic/views/layouts/main';
 
     /**
      * @var string
      */
-    public $controllerNamespace = 'anli\auth0\controllers';
+    public $controllerNamespace = 'thyseus\auth0\controllers';
 
     /**
      * @var string

@@ -1,18 +1,18 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su Anli
+ * @copyright Copyright (c) 2015 Su thyseus
  * @license http://www.euqol.com/license/
  */
 
-namespace anli\auth0\controllers;
+namespace thyseus\auth0\controllers;
 
-use anli\auth0\models\LoginForm;
+use thyseus\auth0\models\LoginForm;
 use Yii;
 
 /**
  * This is the controller class for the User model.
- * @author Su Anli <anli@euqol.com>
+ * @author Su thyseus <thyseus@euqol.com>
  * @since 1.0.0
  */
 class UserController extends \yii\web\Controller
@@ -24,7 +24,7 @@ class UserController extends \yii\web\Controller
      */
     public function actionLogin()
     {
-        $this->layout = '@vendor/anli/yii2-metronic/views/layouts/login';
+        $this->layout = '@vendor/thyseus/yii2-metronic/views/layouts/login';
 
         $model = new LoginForm;
 

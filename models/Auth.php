@@ -1,11 +1,11 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su Anli
+ * @copyright Copyright (c) 2015 Su thyseus
  * @license http://www.euqol.com/license/
  */
 
-namespace anli\auth0\models;
+namespace thyseus\auth0\models;
 
 use Yii;
 
@@ -17,7 +17,7 @@ use Yii;
  * @property string $source
  * @property string $source_id
  *
- * @author Su Anli <anli@euqol.com>
+ * @author Su thyseus <thyseus@euqol.com>
  * @since 1.0.0
  */
 class Auth extends \yii\db\ActiveRecord

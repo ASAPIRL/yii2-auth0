@@ -1,17 +1,17 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su Anli
+ * @copyright Copyright (c) 2015 Su thyseus
  * @license http://www.euqol.com/license/
  */
 
-namespace anli\auth0\assets;
+namespace thyseus\auth0\assets;
 
 use yii\web\AssetBundle;
 
 /**
  * This is the asset class for the Auth0Lock.
- * @author Su Anli <anli@euqol.com>
+ * @author Su thyseus <thyseus@euqol.com>
  * @since 1.0.0
  */
 class Auth0LockAsset extends AssetBundle

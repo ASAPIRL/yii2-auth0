@@ -1,20 +1,20 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su Anli
+ * @copyright Copyright (c) 2015 Su thyseus
  * @license http://www.euqol.com/license/
  */
 
-namespace anli\auth0\components;
+namespace thyseus\auth0\components;
 
-use anli\auth0\models\Tenant as TenantModel;
+use thyseus\auth0\models\Tenant as TenantModel;
 use Yii;
 use yii\base\Component;
 use yii\base\InvalidConfigException;
 
 /**
  * This is the component class for the Tenant.
- * @author Su Anli <anli@euqol.com>
+ * @author Su thyseus <thyseus@euqol.com>
  * @since 1.1.0
  */
 class Tenant extends Component
