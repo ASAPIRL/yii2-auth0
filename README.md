@@ -4,7 +4,7 @@ Yii2 Auth0
 
 Credits
 -------
-This is a fork of the abondoned anli/yii2-auth0 project. It uses a very old version of
+This is a fork of the abondoned anli/yii2-auth0 project. It used a very old version of
 auth0, so i decided to make a hard fork and modernize it.
 
 Installation
@@ -35,7 +35,7 @@ Update the `modules` section with:
 
     'auth0' => array_merge([
         'class' => 'thyseus\auth0\Module',
-        'adminEmails' => ['thyseus@simbiosis.com.sg'],
+        'adminEmails' => ['admin@example.com'],
     ], require(__DIR__ . '/auth0-local.php')),
 
 Create a new file in `config/auth0-local.php`:
@@ -43,28 +43,28 @@ Create a new file in `config/auth0-local.php`:
     <?php
     if (YII_ENV_DEV) {
         return [
-            'serviceId' => '',
-            'domain' => '',
-            'clientId' => '',
+            'serviceId'    => '',
+            'domain'       => '',
+            'clientId'     => '',
             'clientSecret' => '',
-            'redirectUrl' => '',
-            'apiTokens' => [
-                'usersRead' => '',
+            'redirectUrl'  => '',
+            'apiTokens'    => [
+                'usersRead'   => '',
                 'usersUpdate' => '',
-            ]
+            ],
         ];
     }
-
+    
     return [
-        'serviceId' => '',
-        'domain' => '',
-        'clientId' => '',
+        'serviceId'    => '',
+        'domain'       => '',
+        'clientId'     => '',
         'clientSecret' => '',
-        'redirectUrl' => '',
-        'apiTokens' => [
-            'usersRead' => '',
+        'redirectUrl'  => '',
+        'apiTokens'    => [
+            'usersRead'   => '',
             'usersUpdate' => '',
-        ]
+        ],
     ];
 
 Add to your `.gitignore` file:
