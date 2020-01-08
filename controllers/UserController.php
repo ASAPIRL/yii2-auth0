@@ -27,9 +27,7 @@ class UserController extends \yii\web\Controller
     {
         $auth0 = $this->module->auth0;
 
-        if (! Yii::$app->auth0user->isGuest
-            || ! Yii::$app->user->isGuest
-        ) {
+        if (! Yii::$app->user->isGuest) {
             return $this->redirect('/');
         }
 

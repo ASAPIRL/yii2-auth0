@@ -7,6 +7,8 @@ Credits
 This is a fork of the abondoned anli/yii2-auth0 project. It uses a very old version of
 auth0, so i decided to make a hard fork and modernize it.
 
+It does _not_ use auth0-lock anymore but plain php registration.
+
 Installation
 ------------
 

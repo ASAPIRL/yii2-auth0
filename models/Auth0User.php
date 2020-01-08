@@ -2,14 +2,15 @@
 
 namespace thyseus\auth0\models;
 
+use app\models\User;
 use Yii;
+use yii\base\Event;
+use yii\db\ActiveQuery;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use yii\helpers\ArrayHelper;
-
-use app\models\User;
 
 /**
  * User model
@@ -26,6 +27,8 @@ use app\models\User;
  */
 class Auth0User extends User implements IdentityInterface
 {
+    const EVENT_AFTER_AUTH0_USER_CREATION = 'event_after_auth0_user_creation';
+
     /**
      * @inheritdoc
      */
@@ -165,7 +168,7 @@ class Auth0User extends User implements IdentityInterface
      *
      * @return mixed Return null if no matching record
      */
-    public static function findByAuth0($auth0Data)
+    public static function findByAuth0(array $auth0Data)
     {
         $query = self::find()->where(['source' => 'auth0']);
 
@@ -191,17 +194,17 @@ class Auth0User extends User implements IdentityInterface
     {
         // check if email is taken
 
-        $model = User::find()
+        $user = User::find()
             ->where([
                 'email'  => $auth0Data['email'],
                 'source' => 'auth0',
             ])->one();
 
-        if ($model) {
-            return $model;
+        if ($user) {
+            return $user;
         }
 
-        $model = new User([
+        $user = new User([
             'username'   => $auth0Data['nickname'],
             'email'      => $auth0Data['email'],
             'password'   => Yii::$app->security->generateRandomString(6),
@@ -210,55 +213,27 @@ class Auth0User extends User implements IdentityInterface
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
-        $model->save(false,
+        $user->save(false,
             ['username', 'email', 'password', 'source', 'created_at', 'updated_at']);
 
-        return $model;
-    }
+        Event::trigger(self::class, static::EVENT_AFTER_AUTH0_USER_CREATION, new Event([
+                    'sender' => [
+                        'user'      => $user,
+                        'auth0Data' => $auth0Data,
+                    ],
+                ]
+            )
+        );
 
-    /**
-     * Generate an array for a select2 control.
-     *
-     * @return array
-     */
-    public static function select2Data()
-    {
-        $query = self::find()
-            ->joinWith('tenantUsers')
-            ->andWhere(['{{%tenant_user}}.tenant_id' => Yii::$app->tenant->identity->id])
-            ->select(['{{%user}}.id', 'username'])
-            ->orderBy('username');
-
-        $array = $query
-            ->asArray()->all();
-
-        return ArrayHelper::map($array, 'id', 'username');
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTenantUsers()
-    {
-        return $this->hasMany(TenantUser::className(), ['user_id' => 'id']);
-    }
-
-    /**
-     * @return mixed
-     */
-    public static function ByTenant()
-    {
-        return self::find()
-            ->joinWith('tenantUsers')
-            ->andWhere(['{{%tenant_user}}.tenant_id' => Yii::$app->tenant->identity->id]);
+        return $user;
     }
 
     /**
      * @inheritdoc
-     * @return TimesheetQuery the active query used by this AR class.
+     * @return \yii\db\ActiveQuery the active query used by this AR class.
      */
-    public static function find()
+    public static function find(): ActiveQuery
     {
-        return new UserQuery(get_called_class());
+        return User::find();
     }
 }
