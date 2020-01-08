@@ -1,7 +1,7 @@
 <?php
 /**
  * @link http://www.euqol.com/
- * @copyright Copyright (c) 2015 Su thyseus
+ * @copyright Copyright (c) 2015 Su anli
  * @license http://www.euqol.com/license/
  */
 
@@ -15,9 +15,8 @@ use Yii;
  * @property integer $id
  * @property integer $user_id
  * @property string $source
- * @property string $source_id
  *
- * @author Su thyseus <thyseus@euqol.com>
+ * @author Su anli <anli@euqol.com>
  * @since 1.0.0
  */
 class Auth extends \yii\db\ActiveRecord
@@ -27,7 +26,7 @@ class Auth extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%auth}}';
+        return '{{%auth0_auth}}';
     }
 
     /**
@@ -36,9 +35,9 @@ class Auth extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'source', 'source_id'], 'required'],
+            [['user_id', 'source'], 'required'],
             [['user_id'], 'integer'],
-            [['source', 'source_id'], 'string', 'max' => 255]
+            [['source'], 'string', 'max' => 255]
         ];
     }
 
@@ -51,7 +50,6 @@ class Auth extends \yii\db\ActiveRecord
             'id' => 'ID',
             'user_id' => 'User ID',
             'source' => 'Source',
-            'source_id' => 'Source ID',
         ];
     }
 
@@ -60,6 +58,6 @@ class Auth extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(User::className(), ['id' => 'user_id']);
+        return $this->hasOne(Auth0User::className(), ['id' => 'user_id']);
     }
 }
