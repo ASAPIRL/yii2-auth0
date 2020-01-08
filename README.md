@@ -4,8 +4,8 @@ Yii2 Auth0
 
 Credits
 -------
-This is a fork of the abondoned anli/yii2-auth0 project. It uses a very old version of
-auth0, so i decided to make a hard fork and modernize it.
+This is a modernized fork of the abondoned anli/yii2-auth0 project. The old one uses a very 
+old version of auth0, so i decided to make a hard fork and modernize it.
 
 It does _not_ use auth0-lock anymore but plain php registration.
 
@@ -25,35 +25,25 @@ or add
 to the require section of your `composer.json` file.
 
 Configuration
------
+-------------
 
-Ensure to have `Yii::$app->user` and `app\models\User.php` with an `source` (varchar) column
-configured properly for this extension to work.
+Ensure to have `Yii::$app->user` configured in your application.
+ 
+You will also need to have an `app\models\User.php` with an `source` (varchar) column
+configured properly for this extension to work. yii2-auth0 will place the string 'auth0' into
+this field to mark this user as auth0 user.
 
 Update the `modules` section with:
 
     'auth0' => array_merge([
         'class' => 'thyseus\auth0\Module',
         'adminEmails' => ['admin@example.com'],
-    ], require(__DIR__ . '/auth0-local.php')),
+    ], require(__DIR__ . '/auth0_local.php')),
 
-Create a new file in `config/auth0-local.php`:
+You could handle your development keys here. For the productive keys, you can create a new 
+file in `config/auth0_local.php`:
 
     <?php
-    if (YII_ENV_DEV) {
-        return [
-            'service_id' => '',
-            'domain' => '', // just domain, without protocol (without https://)
-            'client_id' => '',
-            'client_secret' => '',
-            'redirect_uri' => '',
-            'api_tokens' => [
-                'users_read' => '',
-                'users_update' => '',
-            ]
-        ];
-    }
-
     return [
         'serviceId' => '',
         'domain' => '', // just domain, without protocol (without https://)
@@ -66,17 +56,12 @@ Create a new file in `config/auth0-local.php`:
         ]
     ];
 
-Add to your `.gitignore` file:
+And add it to your to your `.gitignore` file:
 
-    /config/auth0-local.php
+    /config/auth0_local.php
 
-Login to auth0 and update the `Allowed Callback Urls` in your setting page.
-
-Update the `components` section in the config with:
-
-    'tenant' => [
-        'class' => 'thyseus\auth0\components\Tenant',
-    ],
+Login to auth0 (https://manage.auth0.com/dashboard) and update the `Allowed Callback Urls` in 
+your setting page.
 
 Usage
 -----
@@ -89,20 +74,8 @@ To show the login user, use:
 
     Html::encode(Yii::$app->user->identity->username);
 
-To show the login tenant, use:
-
-    Html::encode(Yii::$app->tenant->identity->name);
-
-To auto update the tenant_id, add to the `behaviors` section of your model with:
-
-    use thyseus\auth0\behaviors\TenantBehavior;
-    ...
-    'tenant' => [
-        'class' => TenantBehavior::className(),
-    ],
-
 FAQs
------
+----
 
 If you encounter the following error
 
