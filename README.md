@@ -35,15 +35,34 @@ this field to mark this user as auth0 user.
 
 Update the `modules` section with:
 
-    'auth0' => array_merge([
+```php
+    [
+     'auth0' => require __DIR__ . '/auth0.php',
+    ],
+```
+    
+Add a config/auth0.php. You could handle your development keys here:
+
+```php
+<?php
+$config = [
         'class' => 'thyseus\auth0\Module',
         'adminEmails' => ['admin@example.com'],
-    ], require(__DIR__ . '/auth0_local.php')),
+    ];
 
-You could handle your development keys here. For the productive keys, you can create a new 
-file in `config/auth0_local.php`:
+$filenameLocal = __DIR__ . '/auth0_local.php';
 
-    <?php
+if (file_exists($filenameLocal)) {
+    return array_merge($config, require $filenameLocal);
+}
+
+return $config;
+```
+
+For the productive keys, you can create a new file in `config/auth0_local.php`:
+
+```php
+<?php
     return [
         'serviceId' => '',
         'domain' => '', // just domain, without protocol (without https://)
@@ -55,8 +74,9 @@ file in `config/auth0_local.php`:
             'users_update' => '',
         ]
     ];
+```
 
-And add it to your to your `.gitignore` file:
+And add it to your to your `.gitignore` file, so live keys are not pushed into your repository:
 
     /config/auth0_local.php
 
