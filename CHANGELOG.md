@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+2.0.2 [09 Jan 2020]
+-----
+
+* `enh` add some events to UserController
+
 2.0.1 [09 Jan 2020]
 -----
 
