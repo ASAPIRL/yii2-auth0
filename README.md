@@ -29,9 +29,17 @@ Configuration
 
 Ensure to have `Yii::$app->user` configured in your application.
  
-You will also need to have an `app\models\User.php` with an `source` (varchar) column
+You will also need to have an `app\models\User.php` with at least this attributes:
+
+username
+email
+password
+source
+created_at
+updated_at
+
 configured properly for this extension to work. yii2-auth0 will place the string 'auth0' into
-this field to mark this user as auth0 user.
+the 'source' attribute to mark this user as auth0 user.
 
 Update the `modules` section with:
 

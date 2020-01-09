@@ -192,7 +192,7 @@ class Auth0User extends User implements IdentityInterface
      */
     public static function createFromAuth0(array $auth0Data)
     {
-        // check if email is taken
+        // check if the user is already registered via auth0:
 
         $user = User::find()
             ->where([
@@ -204,14 +204,26 @@ class Auth0User extends User implements IdentityInterface
             return $user;
         }
 
-        $user = new User([
-            'username'   => $auth0Data['nickname'],
-            'email'      => $auth0Data['email'],
-            'password'   => Yii::$app->security->generateRandomString(6),
-            'source'     => 'auth0',
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
-        ]);
+        // check if the user is already registered without auth0:
+
+        $user = User::find()->where(['email' => $auth0Data['email']])->one();
+
+        if ($user) {
+            // the user does exists in the system, but is not yet linked to auth0.
+            // link it:
+            $user->source = 'auth0';
+            $user->save(false, ['source']);
+        } else {
+            // the user does not exists _at all_ - create it from scratch:
+            $user = new User([
+                'username'   => $auth0Data['nickname'],
+                'email'      => $auth0Data['email'],
+                'password'   => Yii::$app->security->generateRandomString(20),
+                'source'     => 'auth0',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+        }
 
         $user->save(false,
             ['username', 'email', 'password', 'source', 'created_at', 'updated_at']);
