@@ -1,5 +1,18 @@
 CHANGELOG
-=====
+=========
+
+2.0.1 [09 Jan 2020]
+-----
+
+* `fix` when a user attempting to register via auth0 already exists, sync the existing account
+        instead of creating a new one
+
+2.0.0 [08 Jan 2020]
+-----
+
+* `enh` modernize auth0 libraries
+* `enh` remove deprecated tenant handling
+* `enh` remove auth0-lock javascript widget, use plain php authorization instead
 
 1.11.0 [12 Apr 2015]
 -----
