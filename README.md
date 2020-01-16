@@ -24,6 +24,17 @@ or add
 
 to the require section of your `composer.json` file.
 
+Add this to your `composer.json`. It is necessary for yii2-auth0 to detect your
+applications user model:
+
+```json
+ "autoload": {
+        "psr-4": {
+            "app\\models\\": "models/"
+        }
+    },
+```
+
 Configuration
 -------------
 
