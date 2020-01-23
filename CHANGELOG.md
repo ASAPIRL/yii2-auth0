@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+2.1.0 [23 Jan 2020]
+-----
+
+* `fix` proper implementation of logout via auth0
+
 2.0.2 [09 Jan 2020]
 -----
 

@@ -60,9 +60,16 @@ class Module extends \yii\base\Module
     public $client_secret = '';
 
     /**
-     * @var boolean
+     * @var string
      */
     public $redirect_uri = '';
+
+    /**
+     * @var string the callback url that auth0 redirect the user after he logs out.
+     *             ensure to add this url to your auth0 account at https://manage.auth0.com.
+     * @link https://auth0.com/docs/quickstart/webapp/php/#logout
+     */
+    public $redirect_uri_logout = ['//user/logout'];
 
     /**
      * @var string
@@ -102,6 +109,7 @@ class Module extends \yii\base\Module
             'client_id'            => $this->client_id,
             'client_secret'        => $this->client_secret,
             'redirect_uri'         => $this->redirect_uri,
+            'redirect_uri_logout'  => $this->redirect_uri_logout,
             'persist_id_token'     => $this->persist_id_token,
             'persist_access_token' => $this->persist_access_token,
         ]);

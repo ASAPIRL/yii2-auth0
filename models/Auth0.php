@@ -10,7 +10,7 @@ namespace thyseus\auth0\models;
 use Yii;
 
 /**
- * This is the model class for [[\Auth0\SDK\Auth0]].
+ * This is the wrapper around [[\Auth0\SDK\Auth0]].
  *
  * @author Su anli <anli@euqol.com>
  * @since  1.0.0

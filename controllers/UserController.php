@@ -8,6 +8,7 @@
 namespace thyseus\auth0\controllers;
 
 use yii\base\Event;
+use yii\helpers\Url;
 use thyseus\auth0\models\LoginForm;
 use Yii;
 
@@ -22,7 +23,6 @@ class UserController extends \yii\web\Controller
     const EVENT_BEFORE_AUTH0_LOGIN = 'event_before_auth0_login';
 
     const EVENT_BEFORE_AUTH0_LOGOUT = 'event_before_auth0_logout';
-    const EVENT_AFTER_AUTH0_LOGOUT = 'event_after_auth0_logout';
 
     const EVENT_BEFORE_AUTH0_LOGIN_CALLBACK = 'event_before_auth0_login_callback';
     const EVENT_AFTER_AUTH0_LOGIN_CALLBACK = 'event_after_auth0_login_callback';
@@ -70,12 +70,16 @@ class UserController extends \yii\web\Controller
     public function actionLogout()
     {
         Event::trigger(self::class, self::EVENT_BEFORE_AUTH0_LOGOUT);
+        $module = $this->module;
 
-        $this->module->auth0->logout();
-        Yii::$app->user->logout();
+        $module->auth0->logout();
 
-        Event::trigger(self::class, self::EVENT_AFTER_AUTH0_LOGOUT);
+        $logoutUrl = sprintf('https://%s/v2/logout?client_id=%s&returnTo=%s',
+            $module->domain,
+            $module->client_id,
+            Url::to($module->redirect_uri_logout, true)
+        );
 
-        return $this->goHome();
+        return $this->redirect($logoutUrl);
     }
 }

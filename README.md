@@ -88,6 +88,7 @@ For the productive keys, you can create a new file in `config/auth0_local.php`:
         'client_id' => '',
         'client_secret' => '',
         'redirect_uri' => '',
+        'redirect_uri_logout' => '', // @see https://auth0.com/docs/quickstart/webapp/php/#logout
         'api_tokens' => [
             'users_read' => '',
             'users_update' => '',
