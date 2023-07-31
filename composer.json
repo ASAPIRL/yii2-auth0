@@ -28,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "thyseus\\auth0\\": ""
+            "asapirl\\auth0\\": ""
         }
     }
 }
