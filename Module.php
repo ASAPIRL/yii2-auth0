@@ -105,13 +105,14 @@ class Module extends \yii\base\Module
     public function getAuth0(): Auth0
     {
         return new Auth0([
-            'domain'               => $this->domain,
-            'client_id'            => $this->client_id,
-            'client_secret'        => $this->client_secret,
-            'redirect_uri'         => $this->redirect_uri,
-            'redirect_uri_logout'  => $this->redirect_uri_logout,
-            'persist_id_token'     => $this->persist_id_token,
-            'persist_access_token' => $this->persist_access_token,
+            'domain'             => $this->domain,
+            'clientId'           => $this->client_id,
+            'clientSecret'       => $this->client_secret,
+            'redirectUri'        => $this->redirect_uri,
+            'redirectUriLogout'  => $this->redirect_uri_logout, //todo
+            'persistIdToken'     => $this->persist_id_token,
+            'persistAccessToken' => $this->persist_access_token,
+            'tokenAlgorithm'     => 'RS256'
         ]);
     }
 
